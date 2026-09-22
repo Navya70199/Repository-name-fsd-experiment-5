@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FSD Experiment 4</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1f2937;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            margin: 18px 0;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        .method {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        pre {
+            background: #111827;
+            color: #e5e7eb;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+
+        .error {
+            color: #dc2626;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>FSD Experiment 4</h1>
+    <div class="subtitle">
+        Spring Boot REST API, Validation and Global Exception Handling
+    </div>
+
+    <div class="card">
+        <div class="method">POST /api/posts — CREATE</div>
+        <div class="success">Success</div>
+        <pre>{
+  "success": true,
+  "message": "Post created successfully",
+  "data": {
+    "id": 1,
+    "title": "My First Post",
+    "content": "Learning Spring Boot REST API"
+  }
+}</pre>
+    </div>
+
+    <div class="card">
+        <div class="method">GET /api/posts — READ ALL</div>
+        <div class="success">Success</div>
+        <pre>{
+  "success": true,
+  "message": "Posts retrieved successfully",
+  "data": [
+    {
+      "id": 1,
+      "title": "My First Post",
+      "content": "Learning Spring Boot REST API"
+    }
+  ]
+}</pre>
+    </div>
+
+    <div class="card">
+        <div class="method">GET /api/posts/1 — READ BY ID</div>
+        <div class="success">Success</div>
+        <pre>{
+  "success": true,
+  "message": "Post retrieved successfully",
+  "data": {
+    "id": 1,
+    "title": "My First Post",
+    "content": "Learning Spring Boot REST API"
+  }
+}</pre>
+    </div>
+
+    <div class="card">
+        <div class="method">PUT /api/posts/1 — UPDATE</div>
+        <div class="success">Success</div>
+        <pre>{
+  "success": true,
+  "message": "Post updated successfully",
+  "data": {
+    "id": 1,
+    "title": "Updated Post",
+    "content": "Updated content for Spring Boot"
+  }
+}</pre>
+    </div>
+
+    <div class="card">
+        <div class="method">DELETE /api/posts/1 — DELETE</div>
+        <div class="success">Success</div>
+        <pre>{
+  "success": true,
+  "message": "Post deleted successfully",
+  "data": null
+}</pre>
+    </div>
+
+    <div class="card">
+        <div class="method">Validation Test — HTTP 400</div>
+        <div class="error">Validation Failed</div>
+        <pre>{
+  "success": false,
+  "message": "Validation failed",
+  "errors": {
+    "title": "Title cannot be blank",
+    "content": "Content must be between 5 and 500 characters"
+  },
+  "status": 400
+}</pre>
+    </div>
+
+    <div class="card">
+        <div class="method">Exception Test — HTTP 404</div>
+        <div class="error">Resource Not Found</div>
+        <pre>{
+  "success": false,
+  "message": "Post not found with id: 999",
+  "status": 404
+}</pre>
+    </div>
+
+    <div class="card">
+        <div class="method">Correlation ID Logging</div>
+        <pre>Request started: GET /api/posts
+Correlation ID: d980d252-2923-4369-b0e5-c5201c190e17
+
+Request completed: GET /api/posts
+Duration: 99 ms
+Correlation ID: d980d252-2923-4369-b0e5-c5201c190e17</pre>
+    </div>
+
+</div>
+
+</body>
+</html>
